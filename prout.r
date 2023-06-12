@@ -1,11 +1,11 @@
 accident <- read.csv("stat_acc_V3.csv", sep = ";")
 
-verifier_agglo<- function(valeur){
+verifier_agglo <- function(valeur) {
     if (grepl("Hors agglomération", valeur)) {
         return(1)
-    }else if (grepl("En agglomération", valeur)){
+    } else if (grepl("En agglomération", valeur)) {
         return(2)
-    } else{
+    } else {
         return(0)
     }
 }
