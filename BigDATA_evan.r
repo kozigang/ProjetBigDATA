@@ -5,8 +5,12 @@ secu <- data.frame(donnees["descr_dispo_secu"])
 verifier_ceinture_securite <- function(valeur){
     if (grepl("Utilisation d'une ceinture de sécurité", valeur)) {
         return(1)
-    } else{
-        return(0)
+    } else if (grepl("Utilisation d'un casque")){
+        return(2)
+    } else if (grepl("Présence d'une ceinture de sécurité - Utilisation non déterminable")){
+        return(3)
+    } else if (grepl("Présence de")){
+        return(2)
     }
 }
 
