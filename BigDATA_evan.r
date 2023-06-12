@@ -10,5 +10,5 @@ verifier_ceinture_securite <- function(valeur){
     }
 }
 
-secu$descr_dispo_secu <- sapply(secu$descr_dispo_secu, verifier_ceinture_securite)
-print(head(secu))
+donnees$descr_dispo_secu <- sapply(donnees$descr_dispo_secu, verifier_ceinture_securite)
+write.table(donnees, file = chemin_fichier, sep = ";", row.names = FALSE)
