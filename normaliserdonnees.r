@@ -6,6 +6,14 @@ accident <- read.csv("stat_acc_V3.csv", sep = ";")
 
 accident$an_nais <- as.integer(accident$an_nais)
 
-accident$an_nais[is.na(accident$an_nais)] <- mean(subset(accident$an_nais, accident$an_nais != "NA"))
+accident$an_nais[is.na(accident$an_nais)] <- median(subset(accident$an_nais, accident$an_nais != "NA"))
+
+accident$age <- as.integer(accident$age)
+
+accident$age[is.na(accident$age)] <- median(subset(accident$age, accident$age != "NA"))
+
+accident$place <- as.integer(accident$place)
+
+accident$place[is.na(accident$place)] <- median(subset(accident$place, accident$place != "NA"))
 
 write.table(accident, file = "stat_acc_V3.csv", sep = ";", row.names = FALSE)
