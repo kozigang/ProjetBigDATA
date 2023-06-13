@@ -1,17 +1,5 @@
 data <- read.csv("stat_acc_V3.csv",header=TRUE, sep = ";")
 
-
-# Mettre les variables numériques sous format numériques
-donnees$id_usa <- as.numeric(donnees$id_usa)
-donnees$id_code_insee <- as.numeric(donnees$id_code_insee)
-donnees$an_nais <- as.numeric(donnees$an_nais)
-donnees$age <- as.numeric(donnees$age)
-donnees$place <- as.numeric(donnees$place)
-
-#Mettre la date en format date 
-donnees$date <- as.Date(donnees$date)
-
-
 install.packages("dplyr") 
 library(dplyr)
 
