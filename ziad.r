@@ -21,9 +21,62 @@ accidents_par_semaine <- donnees %>%
 
 #Graphe d'agrégation par semaine
 x11()
-plot(accidents_par_semaine$semaine,accidents_par_semaine$nombre_accidents,xlab="mois",ylab="Nombre d'accident")
+plot(accidents_par_semaine$semaine,accidents_par_semaine$nombre_accidents,xlab="semaine",ylab="Nombre d'accident")
+
+# Faire un data pour le nombre d'accidents et les conditions atmosphériques
+accidents_par_cond_atm <- donnees %>%
+  group_by(descr_athmo) %>%
+  summarize(nombre_accidents = n())
+
+# graphe représentant le nombre d'accidents en fonction des conditions atmosphériques
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(accidents_par_cond_atm, aes(x = descr_athmo, y = nombre_accidents)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "Conditions atmosphériques", y = "Nombre d'accidents", title = "Nombre d'accidents par conditions atmosphériques")
+
+# graphe représentant le nombre d'accidents en fonction des conditions atmosphériques 
+plot(accidents_par_cond_atm$descr_athmo, accidents_par_cond_atm$nombre_accidents,
+     type = "o", xlab = "Conditions Atmosphériques", ylab = "Nombre d'accidents",
+     main = "Évolution du nombre d'accidents par conditions atmosphériques")
+
+# Faire un data pour le nombre d'accidents et la description de la surface 
+accidents_par_descr_surf <- donnees %>%
+  group_by(descr_etat_surf) %>%
+  summarize(nombre_accidents = n())
+
+# graphe représentant le nombre d'accidents en fonction de la description de la surface
+ggplot(accidents_par_descr_surf, aes(x = descr_etat_surf, y = nombre_accidents)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "Description de la surface", y = "Nombre d'accidents", title = "Nombre d'accidents par surface")
+
+# graphe représentant le nombre d'accidents en fonction de la description de la surface
+plot(accidents_par_descr_surf$descr_etat_surf, accidents_par_descr_surf$nombre_accidents,
+     type = "o", xlab = "Description de la surfaces", ylab = "Nombre d'accidents",
+     main = "Nombre d'accidents par surface")
+
+# Faire un data pour le nombre d'accidents et la gravité 
+accidents_par_gravite <- donnees %>%
+  group_by(descr_grav) %>%
+  summarize(nombre_accidents = n())
+
+# graphe représentant le nombre d'accidents en fonction de la gravité
+ggplot(accidents_par_gravite, aes(x = descr_grav, y = nombre_accidents)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "Gravité", y = "Nombre d'accidents", title = "Nombre d'accidents selon la gravité")
+
+# graphe représentant le nombre d'accidents en fonction de la gravité
+plot(accidents_par_gravite$descr_grav, accidents_par_gravite$nombre_accidents,
+     type = "o", xlab = "Gravité", ylab = "Nombre d'accidents",
+     main = "Nombre d'accidents selon la gravité")
+
+# Faire un data pour le nombre d'accidents et les villes 
+accidents_par_ville <- donnees %>%
+  group_by(ville) %>%
+  summarize(nombre_accidents = n())
 
 
 
-
-
+ggplot(accidents_par_ville, aes(x = ville, y = nombre_accidents)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "Gravité", y = "Nombre d'accidents", title = "Nombre d'accidents selon la gravité")
