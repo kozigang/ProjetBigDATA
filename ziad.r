@@ -1,33 +1,44 @@
 data <- read.csv("stat_acc_V3.csv",header=TRUE, sep = ";")
 
+
 # Mettre les variables numériques sous format numériques
-data$id_usa <- as.numeric(data$id_usa)
-data$id_code_insee <- as.numeric(data$id_code_insee)
-data$an_nais <- as.numeric(data$an_nais)
-data$age <- as.numeric(data$age)
-data$place <- as.numeric(data$place)
+donnees$id_usa <- as.numeric(donnees$id_usa)
+donnees$id_code_insee <- as.numeric(donnees$id_code_insee)
+donnees$an_nais <- as.numeric(donnees$an_nais)
+donnees$age <- as.numeric(donnees$age)
+donnees$place <- as.numeric(donnees$place)
+
+
+
+
 
 #Mettre la date en format date 
-data$date <- as.Date(data$date)
+donnees$date <- as.Date(donnees$date)
 
 install.packages("dplyr") 
 library(dplyr)
 
 # Agrégation par mois
-accidents_par_mois <- data %>%
-  mutate(mois = format(date, "%Y-%m")) %>%
+accidents_par_mois <- donnees %>%
+  mutate(mois = format(date, "%m")) %>%
   group_by(mois) %>%
   summarize(nombre_accidents = n())
 
-# Tracer un histogramme des accidents par mois
-barplot(accidents_par_mois$nombre_accidents, names.arg = accidents_par_mois$mois,
-        xlab = "Mois", ylab = "Nombre d'accidents",
-        main = "Nombre d'accidents par mois")
-
+# Graphe d'agrégation par mois
+x11()
+plot(accidents_par_mois$mois,accidents_par_mois$nombre_accidents,xlab="mois",ylab="Nombre d'accident")
 
 # Agrégation par semaine
-accidents_par_semaine <- data %>%
-  mutate(semaine = format(date, "%Y-%U")) %>%
+accidents_par_semaine <- donnees %>%
+  mutate(semaine = format(date, "%U")) %>%
   group_by(semaine) %>%
   summarize(nombre_accidents = n())
+
+#Graphe d'agrégation par semaine
+x11()
+plot(accidents_par_semaine$semaine,accidents_par_semaine$nombre_accidents,xlab="mois",ylab="Nombre d'accident")
+
+
+
+
 

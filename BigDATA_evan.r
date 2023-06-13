@@ -1,5 +1,4 @@
-chemin_fichier <- "C:\\Users\\evank\\OneDrive\\Documents\\Projet_BigData\\stat_acc_V3.csv"
-chemin_sauvegarde <- "C:\\Users\\evank\\OneDrive\\Documents\\Projet_BigData\\stat_acc_V3_modifie.csv"
+chemin_fichier <- "stat_acc_V3.csv"
 donnees <- read.csv(chemin_fichier, sep=";")
 
 # Attribution numérique au variable alphabétique
@@ -274,4 +273,4 @@ donnees$descr_cat_veh <- sapply(donnees$descr_cat_veh, type_vehicule)
 donnees$descr_dispo_secu <- sapply(donnees$descr_dispo_secu, verifier_ceinture_securite)
 donnees$descr_agglo <- sapply(donnees$descr_agglo, normalise_agglo)
 donnees$descr_grav <- sapply(donnees$descr_grav, normalise_gravite)
-write.table(donnees, file = chemin_sauvegarde, sep = ";", row.names = FALSE)
+write.table(donnees, file = "stat_acc_V3_modifie.csv", sep = ";")
