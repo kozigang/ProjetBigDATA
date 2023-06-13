@@ -1,17 +1,5 @@
 data <- read.csv("stat_acc_V3.csv",header=TRUE, sep = ";")
 
-
-# Mettre les variables numériques sous format numériques
-donnees$id_usa <- as.numeric(donnees$id_usa)
-donnees$id_code_insee <- as.numeric(donnees$id_code_insee)
-donnees$an_nais <- as.numeric(donnees$an_nais)
-donnees$age <- as.numeric(donnees$age)
-donnees$place <- as.numeric(donnees$place)
-
-#Mettre la date en format date 
-donnees$date <- as.Date(donnees$date)
-
-
 install.packages("dplyr") 
 library(dplyr)
 
@@ -92,5 +80,3 @@ accidents_par_ville <- donnees %>%
 ggplot(accidents_par_ville, aes(x = ville, y = nombre_accidents)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "Gravité", y = "Nombre d'accidents", title = "Nombre d'accidents selon la gravité")
-
-g
