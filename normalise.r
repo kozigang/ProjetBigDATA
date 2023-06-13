@@ -27,5 +27,5 @@ normalise_gravite <- function(valeur) {
     }
 }
 
-accident$descr_grav <- sapply(accident$descr_grav, normalise_gravite())
+accident$descr_grav <- sapply(accident$descr_grav, normalise_gravite)
 write.table(accident, file = "stat_acc_V3.csv", sep = ";", row.names = FALSE)
