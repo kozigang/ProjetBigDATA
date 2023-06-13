@@ -1,6 +1,4 @@
-chemin_fichier <- "C:\\Users\\evank\\OneDrive\\Documents\\Projet_BigData\\stat_acc_V3.csv"
-chemin_sauvegarde <- "C:\\Users\\evank\\OneDrive\\Documents\\Projet_BigData\\stat_acc_V3_modifie.csv"
-accident <- read.csv(chemin_fichier, sep = ";")
+accident <- read.csv("stat_acc_V3.csv", sep = ";")
 
 # an_nais
 # age
@@ -21,4 +19,4 @@ accident$place[is.na(accident$place)] <- median(subset(accident$place, accident$
 # Changer la valeur de l'age : age - 14
 accident$age <- as.numeric(accident$age)
 accident$age <- accident$age - 14
-write.table(accident, file = chemin_sauvegarde, sep = ";", row.names = FALSE)
+write.table(accident, file = "stat_acc_V3.csv", sep = ";", row.names = FALSE)
