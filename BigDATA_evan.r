@@ -1,6 +1,4 @@
-chemin_fichier <- "C:\\Users\\hp\\projetbd\\ProjetBigDATA-1\\stat_acc_V3.csv"
-donnees <- read.csv(chemin_fichier, sep=";")
-View(donnees)
+
 # Attribution numérique au variable alphabétique
 
 # Formatage de la colonne descr_cat_veh

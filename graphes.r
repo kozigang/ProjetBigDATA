@@ -1,4 +1,16 @@
-data <- read.csv("stat_acc_V3.csv",header=TRUE, sep = ";")
+donnees<-read.csv("C:\\Users\\hp\\Downloads\\stat_acc_V3_exploitable_copy.csv",sep=";")
+
+class(donnees$age)
+# Mettre les variables numériques sous format numériques
+donnees$id_usa <- as.numeric(donnees$id_usa)
+donnees$id_code_insee <- as.numeric(donnees$id_code_insee)
+donnees$an_nais <- as.numeric(donnees$an_nais)
+donnees$age <- as.numeric(donnees$age)
+donnees$place <- as.numeric(donnees$place)
+
+#Mettre la date en format date 
+donnees$date <- as.POSIXct(donnees$date, format = "%d/%m/%Y %H:%M")
+
 
 install.packages("dplyr") 
 library(dplyr)
@@ -70,13 +82,27 @@ plot(accidents_par_gravite$descr_grav, accidents_par_gravite$nombre_accidents,
      type = "o", xlab = "Gravité", ylab = "Nombre d'accidents",
      main = "Nombre d'accidents selon la gravité")
 
+# Faire un data pour le nombre d'accidents et les tranches d'heure
+accidents_par_heure <- donnees %>%
+  mutate(heure = format(date, "%H:00")) %>%
+  group_by(heure) %>%
+  summarize(nombre_accidents = n())
+
+# graphe représentant le nombre d'accidents par tranches d'heure
+ggplot(accidents_par_heure, aes(x = heure, y = nombre_accidents)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "heure", y = "Nombre d'accidents", title = "Nombre d'accidents par tranche d'heure")
+
 # Faire un data pour le nombre d'accidents et les villes 
 accidents_par_ville <- donnees %>%
   group_by(ville) %>%
-  summarize(nombre_accidents = n())
+  summarize(nombre_accidents = n()) %>%
+  arrange(desc(nombre_accidents))
 
-
-
-ggplot(accidents_par_ville, aes(x = ville, y = nombre_accidents)) +
+# graphe représentant le nombre d'accidents par ville
+les_15_prmieres_villes <- accidents_par_ville[1:15, ]  # Sélectionner les 15 premières villes
+ggplot(les_15_prmieres_villes, aes(x = ville, y = nombre_accidents)) +
   geom_bar(stat = "identity", fill = "steelblue") +
-  labs(x = "Gravité", y = "Nombre d'accidents", title = "Nombre d'accidents selon la gravité")
+  labs(x = "ville", y = "Nombre d'accidents", title = "Nombre d'accidents par ville")
+
+
