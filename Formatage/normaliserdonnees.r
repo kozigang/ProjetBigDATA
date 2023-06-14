@@ -32,6 +32,8 @@ accident$id_usa <- as.numeric(accident$id_usa)
 accident$id_code_insee <- as.numeric(accident$id_code_insee)
 #Colonne longitude en "numérique"
 accident$longitude <- as.numeric(accident$longitude)
+#date en format date 
+accident$date <- as.POSIXct(accident$date)
 
 # Dico pour latitude / longitude des arrondissements de Paris 
 arrondissements_paris <- list(
