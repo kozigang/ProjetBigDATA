@@ -19,18 +19,18 @@ ui <- fluidPage(
       leafletOutput("map")
     )
   )
-)
+) 
 
 server <- function(input, output) {
   output$map <- renderLeaflet({
-    accgrav <- accident[accident$desc_gravite == input$gravite, ] 
+    accgrav <- accident[as.character(accident$descr_grav) == as.character(input$gravite), ] 
     leaflet() %>%
       addTiles() %>%
-      addCircleMarkers(data = accgrav, lng = ~accdep$longitude, lat = ~accdep$latitude,
+      addCircleMarkers(data = accgrav, lng = ~accgrav$longitude, lat = ~accgrav$latitude,
                        color = "blue", fillColor = "blue", fillOpacity = 0.6,
                        radius = ~2, stroke = FALSE)
   })
 }
 
 # Lancer l'application Shiny
-print(shinyApp(ui = ui, server = server))
+shinyApp(ui = ui, server = server)
