@@ -11,7 +11,7 @@ donnees$place <- as.numeric(donnees$place)
 #Mettre la date en format date 
 donnees$date <- as.POSIXct(donnees$date, format = "%d/%m/%Y %H:%M")
 
-
+# Installation de la bibliothèque "dplyr"
 install.packages("dplyr") 
 library(dplyr)
 
@@ -21,9 +21,14 @@ accidents_par_mois <- donnees %>%
   group_by(mois) %>%
   summarize(nombre_accidents = n())
 
+# Installation de la bibliothèque "ggplot2"
+install.packages("ggplot2")
+library(ggplot2)
+
 # Graphe d'agrégation par mois
-x11()
-plot(accidents_par_mois$mois,accidents_par_mois$nombre_accidents,xlab="mois",ylab="Nombre d'accident")
+ggplot(accidents_par_mois, aes(x = mois, y = nombre_accidents)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "mois", y = "Nombre d'accidents", title = "Nombre d'accidents par mois")
 
 # Agrégation par semaine
 accidents_par_semaine <- donnees %>%
@@ -32,8 +37,9 @@ accidents_par_semaine <- donnees %>%
   summarize(nombre_accidents = n())
 
 #Graphe d'agrégation par semaine
-x11()
-plot(accidents_par_semaine$semaine,accidents_par_semaine$nombre_accidents,xlab="semaine",ylab="Nombre d'accident")
+ggplot(accidents_par_semaine, aes(x = semaine, y = nombre_accidents)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "semaine", y = "Nombre d'accidents", title = "Nombre d'accidents par semaine")
 
 # Faire un data pour le nombre d'accidents et les conditions atmosphériques
 accidents_par_cond_atm <- donnees %>%
@@ -41,8 +47,6 @@ accidents_par_cond_atm <- donnees %>%
   summarize(nombre_accidents = n())
 
 # graphe représentant le nombre d'accidents en fonction des conditions atmosphériques
-install.packages("ggplot2")
-library(ggplot2)
 ggplot(accidents_par_cond_atm, aes(x = descr_athmo, y = nombre_accidents)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "Conditions atmosphériques", y = "Nombre d'accidents", title = "Nombre d'accidents par conditions atmosphériques")
@@ -50,7 +54,7 @@ ggplot(accidents_par_cond_atm, aes(x = descr_athmo, y = nombre_accidents)) +
 # graphe représentant le nombre d'accidents en fonction des conditions atmosphériques 
 plot(accidents_par_cond_atm$descr_athmo, accidents_par_cond_atm$nombre_accidents,
      type = "o", xlab = "Conditions Atmosphériques", ylab = "Nombre d'accidents",
-     main = "Évolution du nombre d'accidents par conditions atmosphériques")
+     main = "Nombre d'accidents par conditions atmosphériques")
 
 # Faire un data pour le nombre d'accidents et la description de la surface 
 accidents_par_descr_surf <- donnees %>%
