@@ -17,3 +17,13 @@ cat("==============\n")
 cat("Valeur du test de Chi2:", test_stat, "\n")
 cat("Degrés de liberté:", df, "\n")
 cat("P-valeur:", p_value, "\n")
+
+# La valeur p est très proche de zéro (p-value < 2.2e-16), ce qui suggère qu'il
+# existe une forte association statistiquement significative entre les 
+# variables étudiées. La probabilité d'observer une statistique de test aussi 
+# extrême que celle obtenue sous l'hypothèse nulle est extrêmement faible.
+
+# En résumé, les résultats indiquent qu'il existe une association significative
+# entre les variables étudiées, avec une statistique de test élevée et une 
+# valeur p très faible. Cela suggère que les variables ne sont pas 
+# indépendantes et qu'il existe une relation entre elles.

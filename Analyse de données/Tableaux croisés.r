@@ -11,8 +11,9 @@ tableau_croise <- table(accident$descr_dispo_secu, accident$descr_grav)
 tableau_croise2 <- table(accident$descr_etat_surf, accident$descr_grav)
 
 # Convertir le tableau croisé en un objet kable
-kbl_tableau <- kable(tableau_croise2, format = "html") %>%
+kbl_tableau <- kable(tableau_croise, format = "html") %>%
   kable_styling(bootstrap_options = "striped", full_width = FALSE)
 
 # Afficher le tableau en mosaïque
 print(kbl_tableau)
+
