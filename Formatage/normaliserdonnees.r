@@ -18,7 +18,7 @@ accident$place[is.na(accident$place)] <- median(subset(accident$place, accident$
 
 # Changer la valeur de l'age : age - 14
 accident$age <- as.numeric(accident$age)
-accident$age <- accident$age - 14
+accident$age <- accident$age 
 
 #Colonne Num_Acc en "numérique"
 accident$Num_Acc <- sapply(accident$Num_Acc, function(x) {
