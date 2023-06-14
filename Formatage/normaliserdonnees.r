@@ -1,4 +1,4 @@
-accident <- read.csv("stat_acc_V3.csv", sep = ";")
+accident <- read.csv("stat_acc_V3_original.csv", sep = ";")
 
 # an_nais
 # age
@@ -122,4 +122,4 @@ for (ville in accident$ville) {
 }
 
 
-write.table(accident, file = "stat_acc_V3.csv", sep = ";", row.names = FALSE)
+write.table(accident, file = "stat_acc_V3_exp.csv", sep = ";", row.names = FALSE)
