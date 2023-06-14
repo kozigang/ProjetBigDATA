@@ -1,20 +1,19 @@
 chemin_fichier <- "stat_acc_V3_original.csv"
 accident <- read.csv(chemin_fichier, sep = ";")
 
-# an_nais
-# age
-# place
 # Convertir la colonne de dates en format POSIXct
+library(kableExtra)
 
-# Convertir la colonne de dates en format POSIXct
-accident$date <- as.POSIXct(accident$date, format = "%d/%m/%Y  %H:%M", tz = "")
+# Créer un exemple de tableau croisé
+tableau_croise <- table(accident$descr_dispo_secu, accident$descr_grav)
 
-# Formater la date pour afficher le format souhaité
-formatted_date <- format(accident$date, format = "%d/%m/%Y %H:%M:%S")
+# Convertir le tableau croisé en un objet kable
+kbl_tableau <- kable(tableau_croise, format = "html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = FALSE)
 
-print(formatted_date[1])
+# Afficher le tableau en mosaïque
+print(kbl_tableau)
 
 
 
-
-#write.table(accident, file = "C:\\Users\\evank\\OneDrive\\Documents\\Projet_BigData\\stat_acc_V3_modifie.csv", sep = ";", row.names = FALSE)
+#write.table(acci\Projet_BigData\\stat_acc_V3_modifie.csv", sep = ";", row.names = FALSE)
