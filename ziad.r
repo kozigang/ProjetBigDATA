@@ -30,6 +30,11 @@ ggplot(accidents_par_mois, aes(x = mois, y = nombre_accidents)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "mois", y = "Nombre d'accidents", title = "Nombre d'accidents par mois")
 
+# Série chronologique sur l'évolution du nombres d'accidents par mois
+plot(accidents_par_mois$mois, accidents_par_mois$nombre_accidents,
+     type = "o", xlab = "mois", ylab = "Nombre d'accidents",
+     main = "Nombre d'accidents par mois")
+
 # Agrégation par semaine
 accidents_par_semaine <- donnees %>%
   mutate(semaine = format(date, "%U")) %>%
@@ -40,6 +45,11 @@ accidents_par_semaine <- donnees %>%
 ggplot(accidents_par_semaine, aes(x = semaine, y = nombre_accidents)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "semaine", y = "Nombre d'accidents", title = "Nombre d'accidents par semaine")
+
+# Série chronologique sur l'évolution du nombres d'accidents par semaine
+plot(accidents_par_semaine$semaine, accidents_par_semaine$nombre_accidents,
+     type = "o", xlab = "semaine", ylab = "Nombre d'accidents",
+     main = "Nombre d'accidents par semaine")
 
 # Créer un data contenant le nombre d'accidents et les conditions atmosphériques
 accidents_par_cond_atm <- donnees %>%
@@ -78,7 +88,7 @@ accidents_par_gravite <- donnees %>%
 
 # graphe représentant le nombre d'accidents en fonction de la gravité
 ggplot(accidents_par_gravite, aes(x = descr_grav, y = nombre_accidents)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_bar(stat = "identity", fill="steelblue") +
   labs(x = "Gravité", y = "Nombre d'accidents", title = "Nombre d'accidents selon la gravité")
 
 # graphe représentant le nombre d'accidents en fonction de la gravité
