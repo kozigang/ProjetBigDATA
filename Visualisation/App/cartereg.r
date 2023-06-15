@@ -1,4 +1,4 @@
-install.packages(c("shiny", "leaflet", "dplyr"))
+#install.packages(c("shiny", "leaflet", "dplyr"))
 
 library(shiny)
 library(leaflet)
