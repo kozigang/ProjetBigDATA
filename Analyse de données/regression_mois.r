@@ -29,3 +29,21 @@ print(summary(regression))
 # Tracer le graphique avec la ligne de régression
 plot(donnees_reg$mois, donnees_reg$taux_accidents, main = "Évolution du taux d'accidents par mois", xlab = "Mois", ylab = "Taux d'accidents")
 abline(regression, col = "red")
+
+
+#erreur-type : 
+erreur_type <- 22.84
+print(paste("L'erreur-type est de", erreur_type))
+
+# Calcul des intervalles de confiance à 95% pour les estimateurs
+conf_interval <- confint(regression, level = 0.95)
+
+# Affichage des intervalles de confiance
+print(conf_interval)
+
+# Calcul du coefficient de corrélation au carré
+correlation <- cor(donnees_reg$mois, donnees_reg$taux_accidents)
+print(correlation^2)
+# Calcul du R-squared et vérification du coeff de corrélation au carré
+r_squared <- summary(regression)$r.squared
+print(paste("R-squared:", r_squared))
