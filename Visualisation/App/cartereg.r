@@ -4,7 +4,7 @@ library(shiny)
 library(leaflet)
 library(dplyr)
 
-accident <- read.csv("stat_acc_V3.csv", sep = ";")
+accident <- read.csv("stat_acc_V3_exp.csv", sep = ";")
 
 accident$id_code_insee <- as.numeric(accident$id_code_insee)
 

@@ -4,7 +4,7 @@ library(shiny)
 library(leaflet)
 library(dplyr)
 
-accident <- read.csv("stat_acc_V3.csv", sep = ";")
+accident <- read.csv("stat_acc_V3_original.csv", sep = ";")
 
 # Définir l'interface utilisateur
 ui <- fluidPage(
@@ -33,4 +33,4 @@ server <- function(input, output) {
 }
 
 # Lancer l'application Shiny
-shinyApp(ui = ui, server = server)
+print(shinyApp(ui = ui, server = server))

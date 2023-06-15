@@ -1,7 +1,7 @@
-install.packages("lubridate")
+#install.packages("lubridate")
 library(lubridate)
 
-accident <- read.csv("stat_acc_V3.csv", sep = ";")
+accident <- read.csv("stat_acc_V3_exp.csv", sep = ";")
 
 trancheage <- c(0, 18, 40, 60, 80, 100, 120, 140)
 
