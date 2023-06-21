@@ -296,7 +296,7 @@ donnees$id_code_insee <- as.numeric(donnees$id_code_insee)
 #Colonne longitude en "numérique"
 donnees$longitude <- as.numeric(donnees$longitude)
 # Convertir la colonne de dates en format POSIXct
-donnees$date <- as.POSIXct(accident$date, format = "%Y-%m-%d %H:%M")
+donnees$date <- as.POSIXct(donnees$date, format = "%Y-%m-%d %H:%M")
 
 
 # Dico pour latitude / longitude des arrondissements de Paris 
